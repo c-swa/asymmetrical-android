@@ -11,7 +11,9 @@ import androidx.room.PrimaryKey;
 public class Event_Entry {
 
     //Room Database pertinent information
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+
     @NonNull
     @ColumnInfo(name = "event")
     private String name;
