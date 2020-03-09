@@ -19,7 +19,7 @@ public abstract class DirectoryRoomDatabase extends RoomDatabase {
     static final ExecutorService databaseWriteExtractor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static DirectoryRoomDatabase getDatabase(final Context Context){
+    static DirectoryRoomDatabase getDatabase(final Context context){
         if(INSTANCE == null){
             synchronized (DirectoryRoomDatabase.class){
                 if(INSTANCE == null){

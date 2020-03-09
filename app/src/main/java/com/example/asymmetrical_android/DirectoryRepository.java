@@ -36,9 +36,9 @@ class DirectoryRepository {
 
     void insert(EventEntry event){
         DirectoryRoomDatabase.databaseWriteExtractor.execute(() -> {
-            nDirectoryEDao.insert(event)
+            nDirectoryEDao.insert(event);
         });
     }
 
-    
+
 }

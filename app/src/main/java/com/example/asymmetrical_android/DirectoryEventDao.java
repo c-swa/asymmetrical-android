@@ -15,10 +15,10 @@ public interface DirectoryEventDao {
     // 2. Insert a file/folder to the system
     // 3. Delete all or one file(s)
 
-    @Insert(OnConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(DirectoryEntry directoryEntry);
 
-    @Insert(OnConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(EventEntry eventEntry);
 
     @Query("DELETE FROM directory_table")
