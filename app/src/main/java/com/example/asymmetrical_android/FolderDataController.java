@@ -19,16 +19,20 @@ public class FolderDataController {
     }
 
     // Adds a given folder to the the directory.
-    public boolean AddNewFolder(DFolder folder){
+    public void AddNewFolder(DFolder folder){
         folders.add(folder);
 
         try (FileWriter writer = new FileWriter("folderStructure.json", true)){
 
-            return true;
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return false;
+    }
+
+    // Removes given folder from the current directory
+    public void DeleteFolder(DFolder folder){
+        folders.remove(folder);
+
     }
 
 }
