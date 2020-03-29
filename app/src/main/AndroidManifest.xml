@@ -9,10 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".FolderViewActivity"
-            android:label="@string/title_activity_folder_view"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".RootFolderView"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".NDNoteView"
             android:parentActivityName=".MainActivity" />
