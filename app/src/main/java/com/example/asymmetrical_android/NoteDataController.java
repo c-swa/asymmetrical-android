@@ -32,7 +32,7 @@ class NoteDataController {
         return false;
     }
 
-    // Finds a note by the noteName and returns it.
+    // Retrieves a note by the noteName and returns it.
     public DNote GetNoteByName(String noteName){
         try (FileReader reader = new FileReader(noteName+".json")){
             // ** Test getting a new DNote
