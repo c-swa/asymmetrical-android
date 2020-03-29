@@ -12,13 +12,13 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-class DataController {
+class NoteDataController {
 
-    private Gson gson = new Gson();
+    private Gson gson;
 
     // Default Constructor
-    DataController(){
-        // Default construction
+    NoteDataController(){
+        gson = new Gson();
     }
 
     // Write new Note to file
@@ -31,9 +31,11 @@ class DataController {
         }
         return false;
     }
-    public DNote GetNewNote(String noteName){
+
+    // Finds a note by the noteName and returns it.
+    public DNote GetNoteByName(String noteName){
         try (FileReader reader = new FileReader(noteName+".json")){
-            // Test getting a new DNote
+            // ** Test getting a new DNote
             DNote newNote;
             newNote = gson.fromJson(reader, DNote.class);
             return newNote;
@@ -45,7 +47,9 @@ class DataController {
             e.printStackTrace();
             return new DNote(null);
         }
-
     }
+
+
+
 
 }
