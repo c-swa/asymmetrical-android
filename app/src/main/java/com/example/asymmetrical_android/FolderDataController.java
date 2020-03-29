@@ -14,7 +14,7 @@ public class FolderDataController {
     }
 
     public boolean AddNewFolder(String newFolderName){
-        try (FileWriter writer = new FileWriter("folderStructure.json")){
+        try (FileWriter writer = new FileWriter("folderStructure.json", true)){
 
             return true;
         } catch (IOException e) {
