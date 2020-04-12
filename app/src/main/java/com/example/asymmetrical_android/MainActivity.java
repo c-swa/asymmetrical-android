@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void showNewEntryScreen(){
-        Intent intent = new Intent(this, NDNoteView.class);
+        Intent intent = new Intent(this, NewDataView.class);
 
         startActivity(intent);
 

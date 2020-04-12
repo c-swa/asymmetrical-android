@@ -20,30 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TableLayout
-            android:id="@+id/directory_table"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
-            <TableRow
-                android:id="@+id/directory_view_1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:id="@+id/directory_view_2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:id="@+id/directory_view_3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <TableRow
-                android:id="@+id/directory_view_4"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </TableLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

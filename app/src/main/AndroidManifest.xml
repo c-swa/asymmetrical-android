@@ -12,7 +12,7 @@
         <activity android:name=".RootFolderView"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".NDNoteView"
+            android:name=".NewDataView"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
