@@ -42,10 +42,10 @@ class NoteDataController {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            return new DNote(null);
+            return (new DNote("file_not_found_exception_thrown"));
         } catch (IOException e) {
             e.printStackTrace();
-            return new DNote(null);
+            return new DNote("note_IO_exception_thrown");
         }
     }
 

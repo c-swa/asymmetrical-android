@@ -10,8 +10,12 @@ public class DNote {
     private String comments;
 
     // DNote Constructor
+    public DNote(@NonNull String n_name, String n_comments){
+        name = n_name; comments = n_comments;
+    }
+
     public DNote(@NonNull String n_name){
-        name = n_name;
+        name = n_name; comments = "";
     }
 
     // Return Note Name
