@@ -19,7 +19,7 @@ import java.util.ListIterator;
 public class FolderDataController {
 
     public static final String NAME = "name";
-    public static final DFolder ROOT = new DFolder("root");
+    public static final DFolder ROOT = new DFolder("~");
 
     // Gson tool to convert objects to JSON
     private Gson gson;
@@ -53,6 +53,15 @@ public class FolderDataController {
         }
 
         return dFolders;
+    }
+
+    // Reads folder names from the json file
+    public ArrayList<String> readFolderNames(){
+        ArrayList<DFolder> dFolders = readFolders();
+        ArrayList<String> sdFolders = new ArrayList<String>();
+
+
+        return sdFolders;
     }
 
     // Removes given folder from the current directory

@@ -14,12 +14,14 @@ import java.util.List;
 
 public class NewDataView extends AppCompatActivity {
 
+    // Main Controller for data
+    MainController dataController;
     // These objects are what the view will use to save the data to persistent storage
     FolderDataController folderController ;
     NoteDataController noteDataController;
 
-    ArrayAdapter<DFolder> spinnerAdapter;
-    List<DFolder> spinnerItemList;
+    ArrayAdapter<String> spinnerAdapter;
+    List<String> spinnerItemList;
 
     // These variables are what the View will interact with.
     Switch isFolder;    // Acts like a boolean, chooses if the saved file is a Folder or a Note
@@ -35,36 +37,37 @@ public class NewDataView extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_data_view);
 
-        save = (Button) findViewById(R.id.save_button);
-        isFolder = (Switch) findViewById(R.id.ev_dir_switch);
-        name = (EditText) findViewById(R.id.name_box);
-        location = (Spinner) findViewById(R.id.location_spinner);
-        rating = (Spinner) findViewById(R.id.rating_spinner);
-        comments = (EditText) findViewById(R.id.comments_box);
+        save = findViewById(R.id.save_button);
+        isFolder = findViewById(R.id.ev_dir_switch);
+        name = findViewById(R.id.name_box);
+        location = findViewById(R.id.location_spinner);
+        rating = findViewById(R.id.rating_spinner);
+        comments = findViewById(R.id.comments_box);
 
+        dataController = new MainController();
         // Clear list, then add all folders from the list.
         clearList(spinnerItemList);
-     //    spinnerItemList.addAll(folderController.readFolders());
+
+//        spinnerItemList.addAll(dataController.readFolderNames());  ** This method is NOT working.
+        addAllFromList(spinnerItemList, dataController.readFolderNames());
 
         // Adapter is used to add elements to the Spinner when it is created in the view.
-     //   spinnerAdapter = new ArrayAdapter<DFolder>(getApplicationContext(), android.R.layout.simple_spinner_item, spinnerItemList);
-     //   spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-     //   location.setAdapter(spinnerAdapter);
+        spinnerAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, spinnerItemList);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isFolder.isChecked()){
-                    saveFolder();}
-                else {
-                    saveNote();
-                }
-                finish();
+        location.setAdapter(spinnerAdapter);
+
+        save.setOnClickListener(v -> {
+            if (isFolder.isChecked()){
+                saveFolder();}
+            else {
+                saveNote();
             }
+            finish();
         });
     }
 
-    // private method for the list to clear before it is loaded with the necessary data each time.
+    // private method to clear the list before it is loaded with the necessary data each time.
     private boolean clearList(List list){
         try {
             for (int index = 0; index < list.size(); index++){
@@ -75,16 +78,33 @@ public class NewDataView extends AppCompatActivity {
             return false;
         }
     }
+    // private method to add items from one list to another list
+    private boolean addAllFromList(List<String> source, List<String> destination){
+        try {
+            for (int index = 0; index < source.size(); index++){
+                destination.add(source.get(index));
+            }
+            return true;
+        } catch (Exception e){
+            e.printStackTrace();
+            System.out.println("Exception thrown - NewDataView.addAllFromList()");
+            return false;
+        }
+    }
 
+    // Saves a note for when a Note is checked
     public boolean saveNote(){
-        folderController = new FolderDataController();
-
         DNote note = new DNote(name.toString(), comments.toString());
+
 
         return false;
     }
 
+    // Saves a folder for when a Folder is checked.
     public boolean saveFolder(){
+         // Needs to have a way to pass the input for
+                                                        // a non-root folder to be assigned.
+
         return false;
     }
 }
