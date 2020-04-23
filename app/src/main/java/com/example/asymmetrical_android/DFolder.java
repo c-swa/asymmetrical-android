@@ -2,7 +2,10 @@ package com.example.asymmetrical_android;
 
 import androidx.annotation.NonNull;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 
 public class DFolder {
@@ -11,54 +14,65 @@ public class DFolder {
     NoteDataController noteDataController = new NoteDataController();
 
     private String name;
-    private DFolder rootFolder;
+    private DFolder parentFolder;
+    private String parentName;
+
     private int rating;
 
     public String getName(){
         return name;
     }
-    public DFolder getRootFolder(){
-        return rootFolder;
+    public DFolder getParentFolder(){
+        return parentFolder;
     }
 
-    // Notes will contain the names of the notes for them to be stored in JSON for the application.
-    private List<String> notesNames;
-    private List<DNote> notes;
-    // Folders contained within this object will be documented in a list for JSON here
-    private List<DFolder> foldersList;
-    private List<String> foldersNames;
+    private ArrayList<DNote> internalNotes;
+    private ArrayList<DFolder> internalFolders;
 
-
-    DFolder(@NonNull String init_name, DFolder upper){
+    DFolder(@NonNull String init_name, DFolder rootFolder){
         name = init_name;
-        rootFolder = upper;
+        parentFolder = rootFolder;
+        parentName = rootFolder.getName();
     }
 
     DFolder(@NonNull String init_name){
         name = init_name;
-        rootFolder = null;
+        parentFolder = null;
+        parentName = "";
+    }
+
+    DFolder(@NonNull String init_name, String rootName){
+        name = init_name;
+        parentName = rootName;
     }
 
     // Adds a new note to the current folder.
-    public void AddNote(DNote note){
-        notes.add(note);
-        notesNames.add(note.getName());
-        noteDataController.SaveNewNote(note);
+    public boolean AddNote(DNote note){
+        return internalNotes.add(note);
     }
     // Deletes given note from the current folder.
-    public void DeleteNote(DNote note){
-        notes.remove(note);
-        notesNames.remove(note.getName());
+    public boolean DeleteNote(DNote note){
+        return internalNotes.remove(note);
     }
     // Adds a new folder to the current folder.
-    public void AddFolder(DFolder folder){
-        foldersList.add(folder);
-        foldersNames.add((folder.getName()));
+    public boolean AddFolder(DFolder folder){
+        return internalFolders.add(folder);
     }
     // Delete folder from current folder
-    public void DeleteFolder(DFolder folder){
-        foldersList.remove(folder);
-        foldersNames.remove(folder.getName());
+    public boolean DeleteFolder(DFolder folder){
+        return internalFolders.remove(folder);
     }
 
+    // Search function to find a Note inside the folder, returns null if item is not found, else
+    // returns item.
+    public DNote searchByName(String name){
+        ListIterator<DNote> internalNoteIterator = internalNotes.listIterator();
+        while(internalNoteIterator.hasNext()){
+            DNote element = internalNoteIterator.next();
+            if (element.getName().contentEquals(name)){
+                return element;
+            }
+        }
+        return null;
+    }
 }

@@ -52,7 +52,7 @@ public class MainController {
 
     // Saves a new folder to the JSON file. Returns true if successful, false otherwise.
     public boolean saveNewFolder(String folderName, String rootFolderName) throws Exception {
-        DFolder folder;
+        DFolder folder = new DFolder(folderName);
         ArrayList<String> folder_names = readFolderNames();
         for (int index = 0; index < folder_names.size(); index++){
             if (folder_names.get(index).equals(rootFolderName)){
@@ -62,7 +62,7 @@ public class MainController {
             }
         }
 
-        if (folder.)
+        if (folder.getName().equals(""))
 
 
 

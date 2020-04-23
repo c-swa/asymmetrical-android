@@ -52,10 +52,10 @@ public class NewDataView extends AppCompatActivity {
         addAllFromList(spinnerItemList, dataController.readFolderNames());
 
         // Adapter is used to add elements to the Spinner when it is created in the view.
-        spinnerAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, spinnerItemList);
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinnerAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, spinnerItemList);
+//        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        location.setAdapter(spinnerAdapter);
+//        location.setAdapter(spinnerAdapter);
 
         save.setOnClickListener(v -> {
             if (isFolder.isChecked()){
