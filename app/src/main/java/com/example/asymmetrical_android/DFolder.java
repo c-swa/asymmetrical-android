@@ -10,8 +10,6 @@ import java.util.ListIterator;
 
 public class DFolder {
 
-    // NoteData is privy to only files stored "within" the folder.
-    NoteDataController noteDataController = new NoteDataController();
 
     private String name;
     private DFolder parentFolder;

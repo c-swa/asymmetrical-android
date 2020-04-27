@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class NewDataView extends AppCompatActivity {
@@ -17,8 +18,6 @@ public class NewDataView extends AppCompatActivity {
     // Main Controller for data
     MainController dataController;
     // These objects are what the view will use to save the data to persistent storage
-    FolderDataController folderController ;
-    NoteDataController noteDataController;
 
     ArrayAdapter<String> spinnerAdapter;
     List<String> spinnerItemList;
@@ -34,8 +33,11 @@ public class NewDataView extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        dataController = new MainController();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_data_view);
+
+        dataController = (MainController) getIntent().getSerializableExtra("EXTRA_MAIN_CONTROLLER");
 
         save = findViewById(R.id.save_button);
         isFolder = findViewById(R.id.ev_dir_switch);
@@ -44,12 +46,12 @@ public class NewDataView extends AppCompatActivity {
         rating = findViewById(R.id.rating_spinner);
         comments = findViewById(R.id.comments_box);
 
-        dataController = new MainController();
+
         // Clear list, then add all folders from the list.
-        clearList(spinnerItemList);
+//        clearList(spinnerItemList);
 
 //        spinnerItemList.addAll(dataController.readFolderNames());  ** This method is NOT working.
-        addAllFromList(spinnerItemList, dataController.readFolderNames());
+        //addAllFromList(spinnerItemList, dataController.requestFolderNamesFromFile());
 
         // Adapter is used to add elements to the Spinner when it is created in the view.
 //        spinnerAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_spinner_item, spinnerItemList);
