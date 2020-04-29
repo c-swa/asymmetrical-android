@@ -12,8 +12,6 @@ import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MainController controller;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +26,6 @@ public class MainActivity extends AppCompatActivity {
                 showNewEntryScreen();
             }
         });
-
-
-        controller = new MainController();
-
 
     }
 
@@ -59,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void showNewEntryScreen(){
         Intent intent = new Intent(this, NewDataView.class);
-        intent.putExtra("EXTRA_MAIN_CONTROLLER", controller);
         startActivity(intent);
 
     }
