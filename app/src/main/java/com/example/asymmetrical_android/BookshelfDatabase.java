@@ -109,14 +109,15 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
         return key;
     }
 
-    public long addPage(Chapter chapter){
+    public long updateChapter(Chapter chapter){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
         values.put(BOOK_CHAPTER_TITLE, chapter.getChapterTitle());
         values.put(BOOK_PAGE_CONTENT, chapter.getPage());
+        values.put(BOOK_DATE_MODIFIED, chapter.getModificationDate().toString());
 
-        long key = db.update(TABLE_BOOK_NAME, values,BOOK_PRIMARY_KEY , );
+        return db.update(TABLE_BOOK_NAME, values,BOOK_PRIMARY_KEY+"=?", new String[]{String.valueOf(chapter.getChapterNumber())});
 
     }
 
