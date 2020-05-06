@@ -8,6 +8,8 @@ class Page {
     public String getContents(){
         return contents;
     }
+
+    public void setContents(String contents) { this.contents = contents; }
 }
 
 public class Chapter {
@@ -36,5 +38,9 @@ public class Chapter {
 
     public String getPage(){
         return page.getContents();
+    }
+
+    public void setPage(String contents){
+        page.setContents(contents);
     }
 }

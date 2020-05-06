@@ -1,5 +1,6 @@
 package com.example.asymmetrical_android;
 
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.sql.Date;
 import java.util.ArrayList;
 
@@ -15,6 +16,29 @@ public class Book {
     // This ArrayList is used for storing the data that the User is entering as a Chapter.
     private ArrayList<Chapter> chapters;
 
+    public Book(){
+        chapters = new ArrayList<>();
+        setBookTitle("");
+        setCreationDate(null);
+        setModificationDate(null);
+    }
+
+    public Book(int key){
+        primaryKey = key;
+        chapters = new ArrayList<>();
+        setBookTitle("");
+        setCreationDate(null);
+        setModificationDate(null);
+    }
+
+    public Book(int key, String title){
+        primaryKey = key;
+        chapters = new ArrayList<>();
+        setBookTitle(title);
+        setCreationDate(null);
+        setModificationDate(null);
+    }
+
     // Public Get Methods
     public String getBookTitle(){
         return bookTitle;
@@ -24,6 +48,23 @@ public class Book {
     }
     public Date getModificationDate(){
         return modificationDate;
+    }
+    public Chapter getChapter(int index){
+        return chapters.get(index);
+    }
+
+    // Public Set Methods
+    public  void setBookTitle(String title){
+        bookTitle = title;
+    }
+    public void setCreationDate(Date date){
+        creationDate = date;
+    }
+    public void setModificationDate(Date date){
+        modificationDate = date;
+    }
+    public void addChapter(Chapter newChapter){
+        chapters.add(newChapter);
     }
 
 
