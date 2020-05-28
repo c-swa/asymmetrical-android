@@ -23,7 +23,7 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
     // BookTable Column Names
     private static final String BOOK_PRIMARY_KEY = "chapter_number";
     private static final String BOOK_CHAPTER_TITLE = "title";
-//    private static final String BOOK_PAGE_KEY = "page_number";
+    //  private static final String BOOK_PAGE_KEY = "page_number"; -- Can potentially be used later to extend the application with further features
     private static final String BOOK_PAGE_CONTENT = "page";
     private static final String BOOK_DATE_CREATION = "creation_date";
     private static final String BOOK_DATE_MODIFIED = "modification_date";
@@ -33,6 +33,7 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
     private static final String CATALOGUE_BOOKSHELF_ID = "bookshelf_id";
     private static final String CATALOGUE_BOOK_ID = "book_id";
 
+    // Default inherited Constructor
     public BookshelfDatabase(Context context){
         super(context, DATABASE_NAME,null, DATABASE_VERSION);
     }
@@ -63,6 +64,7 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
                 + "\n" + "%s INTEGER"
                 + "\n" + " )", TABLE_CATALOGUE_NAME, CATALOGUE_PRIMARY_KEY, CATALOGUE_BOOKSHELF_ID, CATALOGUE_BOOK_ID);
 
+        db.execSQL("PRAGMA foreign_keys = ON");
         db.execSQL(createBookshelfTable);
         db.execSQL(createBookTable);
         db.execSQL(createCatalogueTable);
@@ -83,6 +85,7 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
 
     // -------------------------------–––––––-------------------------------------------------------
 
+    // Adds a Book to the Bookshelf Database
     public long addBook(Book book){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -96,6 +99,7 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
         return key;
     }
 
+    // Adds a chapter to the Book Database - returns chapter number as a key
     public long addChapter(Chapter chapter){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -109,6 +113,7 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
         return key;
     }
 
+    // Updates the specific chapter
     public long updateChapter(Chapter chapter){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();

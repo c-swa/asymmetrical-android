@@ -43,4 +43,16 @@ public class Chapter {
     public void setPage(String contents){
         page.setContents(contents);
     }
+
+    public void setChapterTitle(String title){
+        chapterTitle = title;
+    }
+
+    public void setCreationDate(Date date){
+        creationDate = date;
+    }
+
+    public void setModificationDate(Date date){
+        modificationDate = date;
+    }
 }
