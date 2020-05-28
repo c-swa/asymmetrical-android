@@ -21,7 +21,7 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
     private static final String BOOKSHELF_DATE_MODIFIED = "modification_date";
 
     // BookTable Column Names
-    private static final String BOOK_PRIMARY_KEY = "chapter_number";
+    private static final String BOOK_CHAPTER_NUMBER = "chapter_number";
     private static final String BOOK_CHAPTER_TITLE = "title";
     //  private static final String BOOK_PAGE_KEY = "page_number"; -- Can potentially be used later to extend the application with further features
     private static final String BOOK_PAGE_CONTENT = "page";
@@ -57,7 +57,7 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
                 + "\n" + "%s TEXT"
                 + "\n" + "%s DATE,"
                 + "\n" + "%s DATE"
-                + "\n" + " )", TABLE_BOOK_NAME, BOOK_PRIMARY_KEY, BOOK_CHAPTER_TITLE, BOOK_PAGE_CONTENT, BOOK_DATE_CREATION, BOOK_DATE_MODIFIED); // Removed BOOK_PAGE_KEY, from Table
+                + "\n" + " )", TABLE_BOOK_NAME, BOOK_CHAPTER_NUMBER, BOOK_CHAPTER_TITLE, BOOK_PAGE_CONTENT, BOOK_DATE_CREATION, BOOK_DATE_MODIFIED); // Removed BOOK_PAGE_KEY, from Table
         String createCatalogueTable = String.format("CREATE TABLE %s )"
                 + "\n" + "%s PRIMARY KEY NOT NULL,"
                 + "\n" + "%s INTEGER,"
@@ -122,7 +122,7 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
         values.put(BOOK_PAGE_CONTENT, chapter.getPage());
         values.put(BOOK_DATE_MODIFIED, chapter.getModificationDate().toString());
 
-        return db.update(TABLE_BOOK_NAME, values,BOOK_PRIMARY_KEY+"=?", new String[]{String.valueOf(chapter.getChapterNumber())});
+        return db.update(TABLE_BOOK_NAME, values,BOOK_CHAPTER_NUMBER+"=?", new String[]{String.valueOf(chapter.getChapterNumber())});
 
     }
 
