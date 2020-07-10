@@ -4,7 +4,5 @@ public class BookCatalogue {
 
     // Primary keys from each table, (Book and Bookshelf) which both allow the
     private long primaryKey;
-    private int bookshelfID;
-    private int bookID;
 
 }

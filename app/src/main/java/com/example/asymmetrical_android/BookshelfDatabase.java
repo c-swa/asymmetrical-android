@@ -10,28 +10,23 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
     // Required values for the use of a SQLite Database
     private static final int DATABASE_VERSION = 2;
     private static final String DATABASE_NAME = "BookshelfDB";
-    private static final String TABLE_BOOKSHELF_NAME = "BookshelfTable";
     private static final String TABLE_BOOK_NAME = "BookTable";
-    private static final String TABLE_CATALOGUE_NAME = "CataglogueTable";
-
-    // BookshelfTable Column Names
-    private static final String BOOKSHELF_PRIMARY_KEY = "key";
-    private static final String BOOKSHELF_BOOK_TITLE = "title";
-    private static final String BOOKSHELF_DATE_CREATION = "creation_date";
-    private static final String BOOKSHELF_DATE_MODIFIED = "modification_date";
+    private static final String TABLE_CHAPTER_NAME = "ChapterTable";
+    private static final String TABLE_SHELF_NAME = "BookshelfTable";
 
     // BookTable Column Names
-    private static final String BOOK_CHAPTER_NUMBER = "chapter_number";
-    private static final String BOOK_CHAPTER_TITLE = "title";
-    //  private static final String BOOK_PAGE_KEY = "page_number"; -- Can potentially be used later to extend the application with further features
-    private static final String BOOK_PAGE_CONTENT = "page";
-    private static final String BOOK_DATE_CREATION = "creation_date";
-    private static final String BOOK_DATE_MODIFIED = "modification_date";
+    private static final String BOOK_PRIMARY_KEY = "key";
+    private static final String BOOK_TITLE = "title";
 
-    // BookCatalogue
-    private static final String CATALOGUE_PRIMARY_KEY = "key";
-    private static final String CATALOGUE_BOOKSHELF_ID = "bookshelf_id";
-    private static final String CATALOGUE_BOOK_ID = "book_id";
+    // ChapterTable Column Names
+    private static final String CHAPTER_PRIMARY_KEY = "chapter_number";
+    private static final String CHAPTER_TITLE = "title";
+    private static final String CHAPTER_CONTENT = "page";
+
+    // BookshelfTable
+    private static final String SHELF_PRIMARY_KEY = "key";
+    private static final String SHELF_BOOK_ID = "bookshelf_id";
+    private static final String SHELF_CHAPTER_ID = "book_id";
 
     // Default inherited Constructor
     public BookshelfDatabase(Context context){
@@ -44,30 +39,25 @@ public class BookshelfDatabase extends SQLiteOpenHelper {
     // Create the tables in the database.
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createBookshelfTable = String.format("CREATE TABLE %s ("
-                + "\n" + "%s PRIMARY KEY NOT NULL,"
-                + "\n" + "%s TEXT NOT NULL,"
-                + "\n" + "%s DATE,"
-                + "\n" + "%s DATE"
-                + "\n" + " )", TABLE_BOOKSHELF_NAME, BOOKSHELF_PRIMARY_KEY, BOOKSHELF_BOOK_TITLE, BOOKSHELF_DATE_CREATION, BOOKSHELF_DATE_MODIFIED);
         String createBookTable = String.format("CREATE TABLE %s ("
                 + "\n" + "%s PRIMARY KEY NOT NULL,"
+                + "\n" + "%s TEXT NOT NULL"
+                + "\n" + " )", TABLE_BOOK_NAME, BOOK_PRIMARY_KEY, BOOK_TITLE);
+        String createChapterTable = String.format("CREATE TABLE %s ("
+                + "\n" + "%s PRIMARY KEY NOT NULL,"
                 + "\n" + "%s TEXT NOT NULL, "
-                // + "\n" + "%s INTEGER,"
                 + "\n" + "%s TEXT"
-                + "\n" + "%s DATE,"
-                + "\n" + "%s DATE"
-                + "\n" + " )", TABLE_BOOK_NAME, BOOK_CHAPTER_NUMBER, BOOK_CHAPTER_TITLE, BOOK_PAGE_CONTENT, BOOK_DATE_CREATION, BOOK_DATE_MODIFIED); // Removed BOOK_PAGE_KEY, from Table
-        String createCatalogueTable = String.format("CREATE TABLE %s )"
+                + "\n" + " )", TABLE_CHAPTER_NAME, CHAPTER_PRIMARY_KEY, CHAPTER_TITLE, CHAPTER_CONTENT);
+        String createBookshelfTable = String.format("CREATE TABLE %s )"
                 + "\n" + "%s PRIMARY KEY NOT NULL,"
                 + "\n" + "%s INTEGER,"
                 + "\n" + "%s INTEGER"
-                + "\n" + " )", TABLE_CATALOGUE_NAME, CATALOGUE_PRIMARY_KEY, CATALOGUE_BOOKSHELF_ID, CATALOGUE_BOOK_ID);
+                + "\n" + " )", TABLE_SHELF_NAME, SHELF_PRIMARY_KEY, SHELF_BOOK_ID, SHELF_CHAPTER_ID);
 
         db.execSQL("PRAGMA foreign_keys = ON");
-        db.execSQL(createBookshelfTable);
         db.execSQL(createBookTable);
-        db.execSQL(createCatalogueTable);
+        db.execSQL(createChapterTable);
+        db.execSQL(createBookshelfTable);
     }
 
     // If a new version of the database exists, upgrade the database.
