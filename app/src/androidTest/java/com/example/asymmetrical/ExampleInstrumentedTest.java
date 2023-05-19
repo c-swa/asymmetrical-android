@@ -1,4 +1,4 @@
-package com.example.asymmetrical_android;
+package com.example.asymmetrical;
 
 import android.content.Context;
 import androidx.test.platform.app.InstrumentationRegistry;
