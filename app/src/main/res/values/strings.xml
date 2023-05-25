@@ -1,6 +1,3 @@
 <resources>
-    <string name="app_name">asymmetrical-android</string>
-    <string name="notes">NOTES</string>
-    <string name="reminders">REMINDERS</string>
-
+    <string name="app_name">Assymetrical</string>
 </resources>
